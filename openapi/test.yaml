@@ -1,0 +1,114 @@
+---
+openapi: 3.0.2
+info:
+  title: Test
+  version: 1.0.0
+paths:
+  /estate/site:
+    get:
+      description: gdfdfgd
+      responses:
+        200:
+          description: Response is an array of theaterdata (one for each theater,
+            keyed by theater-code), each containing an array of field names and their
+            values (FieldValue)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TheaterData'
+              examples:
+                Valid Data:
+                  value: |-
+                    [
+                        {
+                            "theaterCode": "some text",
+                            "lastModifiedOn": "2018-02-10T09:30Z",
+                            "fieldValues": [
+                                {
+                                    "name": "some text",
+                                    "fieldValue": "some text",
+                                    "type": "some text"
+                                },
+                                {
+                                    "name": "some text",
+                                    "fieldValue": "some text",
+                                    "type": "some text"
+                                }
+                            ]
+                        },
+                        {
+                            "theaterCode": "some text",
+                            "lastModifiedOn": "2018-02-10T09:30Z",
+                            "fieldValues": [
+                                {
+                                    "name": "some text",
+                                    "fieldValue": "some text",
+                                    "type": "some text"
+                                },
+                                {
+                                    "name": "some text",
+                                    "fieldValue": "some text",
+                                    "type": "some text"
+                                }
+                            ]
+                        }
+                    ]
+    parameters:
+    - name: modifiedDateTime
+      in: query
+      required: false
+      schema:
+        format: date-time
+        type: string
+    - name: fieldsRequested
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+components:
+  schemas:
+    TheaterData:
+      title: Root Type for TheaterData
+      description: The root of the TheaterData type's schema.
+      type: object
+      properties:
+        theaterCode:
+          type: string
+        lastModifiedOn:
+          format: date-time
+          type: string
+        fieldValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldValue'
+      example: |-
+        {
+            "TheaterCode": "XXXXXX",
+            "FieldValues": [
+                {
+                    "Name": "FFFFFF",
+                    "Value": "VVVVVV",
+                    "Type": "int"
+                }
+            ]
+        }
+    FieldValue:
+      title: Root Type for FieldValue
+      description: The root of the FieldValue type's schema.
+      type: object
+      properties:
+        name:
+          type: string
+        fieldValue:
+          type: string
+        type:
+          type: string
+      example: |-
+        {
+            "Name": "FFFFFF",
+            "Value": "VVVVVV",
+            "Type": "int"
+        }
