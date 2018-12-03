@@ -7,7 +7,7 @@
   "paths": {
     "/estate/site": {
       "get": {
-        "description": "gdfdfgd",
+        "description": "get site data",
         "responses": {
           "200": {
             "description": "Response is an array of theaterdata (one for each theater, keyed by theater-code), each containing an array of field names and their values (FieldValue)",
